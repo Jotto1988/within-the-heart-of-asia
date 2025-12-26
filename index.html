@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Within the Heart of Asia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. THE COLOR PALETTE --- */
+        :root {
+            --color-vanilla: #FBF7F0;  /* The Page Background */
+            --color-white: #FFFFFF;    /* The Card/Section Background */
+            --color-pink: #E8CFD1;     /* The Accent */
+            --color-charcoal: #333333; /* The Text */
+            --color-grey-light: #f4f4f4;
+        }
+
+        /* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--color-vanilla);
+            color: var(--color-charcoal);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-charcoal);
+            font-weight: 700;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; }
+
+        /* --- 3. THE LOGO CONCEPT --- */
+        /* A minimalist text logo with a pink organic circle accent */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--color-white);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- 4. NAVIGATION (White Background) --- */
+        nav {
+            background-color: var(--color-white);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover { color: #b08d90; } /* Darker shade of pink for hover */
+
+        /* --- 5. HERO SECTION (Vanilla Background) --- */
+        .hero {
+            background-color: var(--color-vanilla);
+            padding: 4rem 5%;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .btn {
+            background-color: var(--color-pink);
+            color: var(--color-charcoal);
+            padding: 12px 30px;
+            border-radius: 2px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid var(--color-pink);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            border-color: var(--color-charcoal);
+        }
+
+        /* --- 6. DESTINATIONS (Grid Layout) --- */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .destination-card {
+            background-color: var(--color-white);
+            border-radius: 8px; /* Soft corners */
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Very subtle shadow */
+            transition: transform 0.3s ease;
+        }
+
+        .destination-card:hover { transform: translateY(-5px); }
+
+        .card-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-content { padding: 2rem; }
+
+        .card-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            background-color: var(--color-white);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 4rem;
+        }
+
+        /* Mobile Response */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Hidden for simplicity in this demo */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <div class="logo-mark">W</div>
+            <span class="logo-text">Within the Heart</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Destinations</a>
+            <a href="#">Trip Planning</a>
+            <a href="#">The Eats</a>
+            <a href="#">About</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Modern Cities.<br>Ancient Souls.</h1>
+        <p>A curated guide to the culture, cuisine, and chaos of South Korea and Thailand.</p>
+        <a href="#" class="btn">Start Exploring</a>
+    </header>
+
+    <section class="section-container">
+        <h2 class="section-title">Select Your Path</h2>
+        
+        <div class="grid-2">
+            <article class="destination-card">
+                <img src="https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1000&auto=format&fit=crop" alt="Seoul Palace" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">East Asia</span>
+                    <h3>South Korea: The Modern Heart</h3>
+                    <p>From the neon streets of Myeongdong to the serene Hanok villages. Discover a land of four distinct seasons.</p>
+                    <br>
+                    <a href="#" style="color: #b08d90; font-weight: bold;">Read Guide &rarr;</a>
+                </div>
+            </article>
+
+            <article class="destination-card">
+                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000&auto=format&fit=crop" alt="Thailand Temple" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Southeast Asia</span>
+                    <h3>Thailand: The Tropical Heart</h3>
+                    <p>Golden temples, spicy street food, and islands that feel like paradise. Experience the Land of Smiles.</p>
+                    <br>
+                    <a href="#" style="color: #b08d90; font-weight: bold;">Read Guide &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
+            <div class="logo-mark">W</div>
+        </div>
+        <p>&copy; 2025 Within the Heart of Asia. Designed with minimalist warmth.</p>
+    </footer>
+
+</body>
+</html>
