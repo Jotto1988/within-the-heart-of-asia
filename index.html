@@ -7,19 +7,20 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. THE COLOR PALETTE --- */
+        /* --- 1. THE DESIGN TOKENS --- */
         :root {
-            --color-vanilla: #FBF7F0;  /* The Page Background */
-            --color-white: #FFFFFF;    /* The Card/Section Background */
-            --color-pink: #E8CFD1;     /* The Accent */
-            --color-charcoal: #333333; /* The Text */
-            --color-grey-light: #f4f4f4;
+            --color-vanilla: #FBF7F0; 
+            --color-white: #FFFFFF;
+            --color-pink: #E8CFD1; 
+            --color-pink-dark: #b08d90;
+            --color-charcoal: #333333; 
+            --color-text-light: #666666;
         }
 
-        /* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+        /* --- 2. GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -32,23 +33,29 @@
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             color: var(--color-charcoal);
-            font-weight: 700;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-        img { max-width: 100%; display: block; }
+        img { width: 100%; height: auto; display: block; object-fit: cover; }
 
-        /* --- 3. THE LOGO CONCEPT --- */
-        /* A minimalist text logo with a pink organic circle accent */
-        .logo-container {
+        /* --- 3. NAVIGATION --- */
+        nav {
+            background-color: var(--color-white);
+            padding: 1.2rem 5%;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
         
         .logo-mark {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background-color: var(--color-pink);
             border-radius: 50%;
             display: flex;
@@ -56,141 +63,144 @@
             justify-content: center;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--color-white);
         }
 
-        .logo-text {
-            font-size: 1.5rem;
-            letter-spacing: 0.05em;
-        }
+        .logo-text { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.5px; }
 
-        /* --- 4. NAVIGATION (White Background) --- */
-        nav {
-            background-color: var(--color-white);
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--color-charcoal); }
+        .nav-links a:hover { color: var(--color-pink-dark); }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .nav-links a:hover { color: #b08d90; } /* Darker shade of pink for hover */
-
-        /* --- 5. HERO SECTION (Vanilla Background) --- */
+        /* --- 4. HERO SECTION (BANGKOK FOCUS) --- */
         .hero {
-            background-color: var(--color-vanilla);
-            padding: 4rem 5%;
-            text-align: center;
-            min-height: 60vh;
+            position: relative;
+            height: 80vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+            overflow: hidden;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+        /* Dark overlay to make text pop */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+            z-index: 1;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-            color: #666;
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* BANGKOK SKYLINE IMAGE */
+            background-image: url('https://images.unsplash.com/photo-1582468579696-b29dc799715a?q=80&w=2000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            animation: slowZoom 20s infinite alternate;
         }
 
-        .btn {
-            background-color: var(--color-pink);
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; font-weight: 300; opacity: 0.9; }
+
+        .btn-hero {
+            background-color: var(--color-white);
             color: var(--color-charcoal);
-            padding: 12px 30px;
-            border-radius: 2px;
+            padding: 15px 40px;
+            border-radius: 50px;
             font-weight: 700;
             letter-spacing: 1px;
-            border: 1px solid var(--color-pink);
+            text-transform: uppercase;
         }
+        .btn-hero:hover { background-color: var(--color-pink); color: var(--color-white); }
 
-        .btn:hover {
-            background-color: transparent;
-            border-color: var(--color-charcoal);
-        }
+        @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* --- 6. DESTINATIONS (Grid Layout) --- */
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 1rem;
-        }
+        /* --- 5. SECTION: THE PULSE (K-POP) --- */
+        .section { padding: 5rem 5%; max-width: 1300px; margin: 0 auto; }
+        
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .tag { color: var(--color-pink-dark); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 10px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-header p { max-width: 600px; margin: 0 auto; color: var(--color-text-light); }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .grid-2 {
+        .pulse-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
-        .destination-card {
-            background-color: var(--color-white);
-            border-radius: 8px; /* Soft corners */
+        .pulse-card {
+            background: var(--color-white);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Very subtle shadow */
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+        .pulse-card:hover { transform: translateY(-8px); }
+        
+        .pulse-img { height: 250px; width: 100%; object-fit: cover; }
+        .pulse-content { padding: 2rem; }
+        .pulse-content h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .pulse-content p { font-size: 0.95rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
+        .link-text { font-weight: 700; color: var(--color-pink-dark); border-bottom: 2px solid var(--color-pink); padding-bottom: 2px; }
+
+        /* --- 6. SECTION: LIVING HISTORY (SIAMESE CATS) --- */
+        .history-section {
+            background-color: var(--color-white);
+            padding: 6rem 5%;
         }
 
-        .destination-card:hover { transform: translateY(-5px); }
-
-        .card-img {
-            height: 300px;
-            width: 100%;
-            object-fit: cover;
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .card-content { padding: 2rem; }
-
-        .card-tag {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #999;
-            margin-bottom: 0.5rem;
-            display: block;
+        .history-text h2 { font-size: 2.8rem; margin-bottom: 1.5rem; line-height: 1.2; }
+        .history-text p { margin-bottom: 1.5rem; color: var(--color-text-light); font-size: 1.1rem; }
+        
+        .history-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
+        .history-images img { border-radius: 8px; }
+        .tall-img { grid-row: span 2; height: 100%; }
 
         /* --- 7. FOOTER --- */
         footer {
-            background-color: var(--color-white);
-            padding: 3rem 5%;
+            background-color: var(--color-charcoal);
+            color: var(--color-white);
+            padding: 4rem 5%;
             text-align: center;
-            border-top: 1px solid #eee;
-            margin-top: 4rem;
         }
+        .footer-logo { font-family: 'Playfair Display'; font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+        .footer-links { margin-bottom: 2rem; }
+        .footer-links a { color: #aaa; margin: 0 15px; }
+        .footer-links a:hover { color: var(--color-white); }
 
-        /* Mobile Response */
+        /* MOBILE TWEAKS */
         @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Hidden for simplicity in this demo */
+            .pulse-grid { grid-template-columns: 1fr; }
+            .split-layout { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -203,51 +213,86 @@
         </div>
         <div class="nav-links">
             <a href="#">Destinations</a>
-            <a href="#">Trip Planning</a>
+            <a href="#">K-Culture Pulse</a>
+            <a href="#">Heritage</a>
             <a href="#">The Eats</a>
-            <a href="#">About</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>Modern Cities.<br>Ancient Souls.</h1>
-        <p>A curated guide to the culture, cuisine, and chaos of South Korea and Thailand.</p>
-        <a href="#" class="btn">Start Exploring</a>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Bangkok Nights.<br>Seoul Lights.</h1>
+            <p>Dive deep into the culture of Asia. From the chaotic beauty of Thai street markets to the polished beats of K-Pop stardom.</p>
+            <a href="#" class="btn-hero">Start The Journey</a>
+        </div>
     </header>
 
-    <section class="section-container">
-        <h2 class="section-title">Select Your Path</h2>
-        
-        <div class="grid-2">
-            <article class="destination-card">
-                <img src="https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1000&auto=format&fit=crop" alt="Seoul Palace" class="card-img">
-                <div class="card-content">
-                    <span class="card-tag">East Asia</span>
-                    <h3>South Korea: The Modern Heart</h3>
-                    <p>From the neon streets of Myeongdong to the serene Hanok villages. Discover a land of four distinct seasons.</p>
-                    <br>
-                    <a href="#" style="color: #b08d90; font-weight: bold;">Read Guide &rarr;</a>
+    <section class="section">
+        <div class="section-header">
+            <span class="tag">The Culture Pulse</span>
+            <h2>Idols & Icons</h2>
+            <p>Exploring the global phenomenon of Asian pop music. Who is ruling the charts, and who is next in line?</p>
+        </div>
+
+        <div class="pulse-grid">
+            <article class="pulse-card">
+                <img src="https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop" alt="Concert Crowd" class="pulse-img">
+                <div class="pulse-content">
+                    <h3>The Kings Return: BTS</h3>
+                    <p>As the members return from service, the world holds its breath. A look back at their legacy and what the future holds for the biggest boy band on earth.</p>
+                    <a href="#" class="link-text">Read Feature</a>
                 </div>
             </article>
 
-            <article class="destination-card">
-                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000&auto=format&fit=crop" alt="Thailand Temple" class="card-img">
-                <div class="card-content">
-                    <span class="card-tag">Southeast Asia</span>
-                    <h3>Thailand: The Tropical Heart</h3>
-                    <p>Golden temples, spicy street food, and islands that feel like paradise. Experience the Land of Smiles.</p>
-                    <br>
-                    <a href="#" style="color: #b08d90; font-weight: bold;">Read Guide &rarr;</a>
+            <article class="pulse-card">
+                <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop" alt="Modern Fashion" class="pulse-img">
+                <div class="pulse-content">
+                    <h3>Dark Blood: Enhypen</h3>
+                    <p>With their vampire-concept lore and synchronized precision, Enhypen is leading the 4th Generation charge. We breakdown their latest comeback.</p>
+                    <a href="#" class="link-text">Read Feature</a>
+                </div>
+            </article>
+
+            <article class="pulse-card">
+                <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=1000&auto=format&fit=crop" alt="Seoul Street Style" class="pulse-img">
+                <div class="pulse-content">
+                    <h3>Next Up: RIIZE & TWS</h3>
+                    <p>Fresh sounds from SM and Pledis. Meet the "Rookie Monsters" of 2025 who are bringing a refreshing, youthful vibe back to the scene.</p>
+                    <a href="#" class="link-text">Discover New Stans</a>
                 </div>
             </article>
         </div>
     </section>
 
-    <footer>
-        <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
-            <div class="logo-mark">W</div>
+    <section class="history-section">
+        <div class="split-layout">
+            <div class="history-text">
+                <span class="tag">Living Heritage</span>
+                <h2>The Moon Diamond: <br>Thailands Sacred Cat</h2>
+                <p>Before they were global pets, the <strong>Siamese Cat</strong> (or <em>Wichien Maat</em>) was the guardian of Thai temples and the companion of Kings.</p>
+                <p>Legend says that when a Royal died, their soul would pass into a Siamese cat, which would then spend the rest of its life living in luxury in a temple. Today, preservationists in Amphawa are fighting to keep the ancient purebred bloodlines alive.</p>
+                <br>
+                <a href="#" class="btn-hero" style="background:var(--color-charcoal); color:white; font-size: 0.9rem;">Explore the History</a>
+            </div>
+            
+            <div class="history-images">
+                <img src="https://images.unsplash.com/photo-1513245543132-31f507417b26?q=80&w=800&auto=format&fit=crop" alt="Siamese Cat" class="tall-img">
+                <img src="https://images.unsplash.com/photo-1599525633454-3294c7764724?q=80&w=800&auto=format&fit=crop" alt="Thai Temple Detail">
+                <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?q=80&w=800&auto=format&fit=crop" alt="Bangkok Street">
+            </div>
         </div>
-        <p>&copy; 2025 Within the Heart of Asia. Designed with minimalist warmth.</p>
+    </section>
+
+    <footer>
+        <span class="footer-logo">Within the Heart of Asia</span>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+        </div>
+        <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2025. Designed in the Heart of Asia.</p>
     </footer>
 
 </body>
