@@ -4,372 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Within the Heart of Asia</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. THE DESIGN TOKENS --- */
+        /* --- DESIGN SYSTEM --- */
         :root {
-            --color-vanilla: #FBF7F0; 
-            --color-white: #FFFFFF;
-            --color-pink: #E8CFD1; 
-            --color-pink-dark: #b08d90;
-            --color-charcoal: #333333; 
-            --color-text-light: #666666;
-            --color-gold: #D4AF37; /* Added Gold for "Premium" feel */
+            --color-vanilla: #FBF7F0; --color-white: #FFFFFF;
+            --color-pink: #E8CFD1; --color-pink-dark: #b08d90;
+            --color-charcoal: #333333; --color-text-light: #666666;
         }
-
-        /* --- 2. GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: var(--color-vanilla);
-            color: var(--color-charcoal);
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--color-charcoal);
-        }
-
+        body { background-color: var(--color-vanilla); color: var(--color-charcoal); font-family: 'Lato', sans-serif; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-        img { width: 100%; height: auto; display: block; object-fit: cover; }
+        img { width: 100%; display: block; object-fit: cover; }
 
-        /* --- 3. NAVIGATION --- */
-        nav {
-            background-color: var(--color-white);
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .logo-container { display: flex; align-items: center; gap: 12px; }
+        /* --- NAV --- */
+        nav { background: var(--color-white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #eee; }
+        .logo-mark { width: 40px; height: 40px; background: var(--color-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem; margin-right: 10px; }
+        .nav-links a { margin-left: 20px; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; }
         
-        .logo-mark {
-            width: 45px;
-            height: 45px;
-            background-color: var(--color-pink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.4rem;
-            color: var(--color-white);
-        }
+        /* --- HERO --- */
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1582468579696-b29dc799715a?q=80&w=2000'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero h1 { font-size: 3.5rem; }
 
-        .logo-text { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.5px; }
-
-        .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--color-charcoal); }
-        .nav-links a:hover { color: var(--color-pink-dark); }
-
-        /* --- 4. HERO SECTION --- */
-        .hero {
-            position: relative;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--color-white);
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
-            z-index: 1;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1582468579696-b29dc799715a?q=80&w=2000&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            z-index: 0;
-            animation: slowZoom 20s infinite alternate;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .hero h1 { font-size: 4rem; margin-bottom: 1rem; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.4rem; margin-bottom: 2.5rem; font-weight: 300; opacity: 0.9; }
-
-        .btn-hero {
-            background-color: var(--color-white);
-            color: var(--color-charcoal);
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .btn-hero:hover { background-color: var(--color-pink); color: var(--color-white); }
-
-        @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
-
-        /* --- 5. SECTION: K-POP PULSE --- */
-        .section { padding: 5rem 5%; max-width: 1300px; margin: 0 auto; }
+        /* --- BLOG SECTION (THE JOURNAL) --- */
+        .journal-section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
         
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .tag { color: var(--color-pink-dark); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 10px; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .section-header p { max-width: 600px; margin: 0 auto; color: var(--color-text-light); }
-
-        .pulse-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .pulse-card {
-            background: var(--color-white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            transition: transform 0.3s;
-        }
-        .pulse-card:hover { transform: translateY(-8px); }
+        /* The Grid */
+        .journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         
-        .pulse-img { height: 250px; width: 100%; object-fit: cover; }
-        .pulse-content { padding: 2rem; }
-        .pulse-content h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-        .pulse-content p { font-size: 0.95rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
-        .link-text { font-weight: 700; color: var(--color-pink-dark); border-bottom: 2px solid var(--color-pink); padding-bottom: 2px; }
+        /* The Card */
+        .blog-card { background: var(--color-white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-img { height: 200px; }
+        .blog-content { padding: 1.5rem; }
+        .blog-date { font-size: 0.75rem; color: var(--color-pink-dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .blog-title { font-size: 1.25rem; margin: 0.5rem 0; line-height: 1.3; }
+        .blog-excerpt { font-size: 0.9rem; color: var(--color-text-light); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .read-more-btn { display: inline-block; margin-top: 1rem; font-size: 0.85rem; font-weight: 700; color: var(--color-charcoal); border-bottom: 2px solid var(--color-pink); }
 
-        /* --- 6. NEW SECTION: SHOP THE AESTHETIC (MONETIZATION) --- */
-        .shop-section {
-            background-color: var(--color-white);
-            padding: 5rem 5%;
-            border-top: 1px solid #eee;
-        }
-
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .product-card {
-            text-align: center;
-            padding: 1rem;
-            border: 1px solid #f0f0f0;
-            transition: 0.3s;
-        }
-        .product-card:hover { border-color: var(--color-pink); }
+        /* --- MODAL (POPUP) --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s; }
+        .modal-overlay.active { display: flex; opacity: 1; }
         
-        .product-img {
-            height: 180px;
-            width: 100%;
-            object-fit: contain; /* Keeps product aspect ratio */
-            margin-bottom: 1rem;
-        }
-        
-        .product-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .product-price { color: var(--color-text-light); font-size: 0.9rem; margin-bottom: 1rem; }
-        .btn-shop { 
-            display: inline-block; 
-            padding: 8px 20px; 
-            background: var(--color-charcoal); 
-            color: white; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
+        .modal-content { background: var(--color-white); width: 100%; max-width: 800px; max-height: 90vh; overflow-y: auto; border-radius: 8px; position: relative; padding: 0; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }
 
-        /* --- 7. HISTORY SECTION --- */
-        .history-section { padding: 6rem 5%; }
+        .modal-header-img { width: 100%; height: 300px; object-fit: cover; }
+        .modal-body { padding: 3rem; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: white; cursor: pointer; text-shadow: 0 2px 5px rgba(0,0,0,0.5); z-index: 10; }
+        .modal-body h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .modal-body .meta { color: var(--color-pink-dark); font-weight: 700; margin-bottom: 2rem; display: block; }
+        .modal-text { font-size: 1.1rem; line-height: 1.8; color: #444; white-space: pre-line; }
 
-        .split-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* --- SHOP SECTION --- */
+        .shop-section { padding: 4rem 5%; background: white; text-align: center; margin-top: 4rem; }
+        .shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .product-card { border: 1px solid #eee; padding: 1rem; }
+        .product-card img { height: 150px; object-fit: contain; margin-bottom: 10px; }
+        .btn-shop { background: var(--color-charcoal); color: white; padding: 5px 15px; font-size: 0.8rem; display: inline-block; margin-top: 10px; }
 
-        .history-text h2 { font-size: 2.8rem; margin-bottom: 1.5rem; line-height: 1.2; }
-        .history-text p { margin-bottom: 1.5rem; color: var(--color-text-light); font-size: 1.1rem; }
-        
-        .history-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        .history-images img { border-radius: 8px; }
-        .tall-img { grid-row: span 2; height: 100%; }
-
-        /* --- 8. FOOTER --- */
-        footer {
-            background-color: var(--color-charcoal);
-            color: var(--color-white);
-            padding: 4rem 5%;
-            text-align: center;
-        }
-        .footer-logo { font-family: 'Playfair Display'; font-size: 1.5rem; margin-bottom: 1rem; display: block; }
-        .footer-links { margin-bottom: 2rem; }
-        .footer-links a { color: #aaa; margin: 0 15px; }
-        .footer-links a:hover { color: var(--color-white); }
-
-        /* MOBILE TWEAKS */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .pulse-grid, .shop-grid { grid-template-columns: 1fr; }
-            .split-layout { grid-template-columns: 1fr; }
+        @media (max-width: 768px) { 
+            .hero h1 { font-size: 2.5rem; } 
+            .shop-grid, .journal-grid { grid-template-columns: 1fr; } 
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-container">
-            <div class="logo-mark">W</div>
-            <span class="logo-text">Within the Heart</span>
-        </div>
-        <div class="nav-links">
-            <a href="#">Destinations</a>
-            <a href="#">K-Culture Pulse</a>
-            <a href="#">Heritage</a>
-            <a href="#">The Shop</a>
-        </div>
-    </nav>
+<nav>
+    <div style="display:flex; align-items:center;">
+        <div class="logo-mark">W</div>
+        <span style="font-family:'Playfair Display'; font-weight:700;">Within the Heart</span>
+    </div>
+    <div class="nav-links">
+        <a href="#journal">The Journal</a>
+        <a href="#shop">Shop Essentials</a>
+        <a href="#">About</a>
+    </div>
+</nav>
 
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>Bangkok Nights.<br>Seoul Lights.</h1>
-            <p>Dive deep into the culture of Asia. Documenting the dream journey from the heart of the west to the soul of the east.</p>
-            <a href="#" class="btn-hero">Start The Journey</a>
-        </div>
-    </header>
+<header class="hero">
+    <div>
+        <h1>Ancient Souls.<br>Modern Dreams.</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Documenting the journey to Asia.</p>
+    </div>
+</header>
 
-    <section class="section">
-        <div class="section-header">
-            <span class="tag">The Culture Pulse</span>
-            <h2>Idols & Icons</h2>
-            <p>Exploring the global phenomenon of Asian pop music. Who is ruling the charts, and who is next in line?</p>
-        </div>
+<section id="journal" class="journal-section">
+    <div class="section-header">
+        <span style="color:var(--color-pink-dark); font-weight:900; letter-spacing:2px; font-size:0.8rem;">MY DIARY</span>
+        <h2>Stories from the Path</h2>
+    </div>
 
-        <div class="pulse-grid">
-            <article class="pulse-card">
-                <img src="https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop" alt="Concert Crowd" class="pulse-img">
-                <div class="pulse-content">
-                    <h3>The Kings Return: BTS</h3>
-                    <p>As the members return from service, the world holds its breath. A look back at their legacy.</p>
-                    <a href="#" class="link-text">Read Feature</a>
-                </div>
-            </article>
-
-            <article class="pulse-card">
-                <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop" alt="Modern Fashion" class="pulse-img">
-                <div class="pulse-content">
-                    <h3>Dark Blood: Enhypen</h3>
-                    <p>With their vampire-concept lore and synchronized precision, Enhypen is leading the 4th Generation.</p>
-                    <a href="#" class="link-text">Read Feature</a>
-                </div>
-            </article>
-
-            <article class="pulse-card">
-                <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=1000&auto=format&fit=crop" alt="Seoul Street Style" class="pulse-img">
-                <div class="pulse-content">
-                    <h3>Next Up: RIIZE & TWS</h3>
-                    <p>Fresh sounds from SM and Pledis. Meet the "Rookie Monsters" of 2025.</p>
-                    <a href="#" class="link-text">Discover New Stans</a>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="shop-section">
-        <div class="section-header">
-            <span class="tag">Bring Asia Home</span>
-            <h2>Curated Essentials</h2>
-            <p>The best music, style, and tastes to experience the culture before you fly.</p>
-        </div>
+    <div class="journal-grid" id="blog-container">
         
-        <div class="shop-grid">
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/71X8NZeKqXL._AC_SL1500_.jpg" alt="Kpop Album" class="product-img">
-                <h4 class="product-title">Enhypen - Dark Blood</h4>
-                <p class="product-price">From $24.99</p>
-                <a href="#" class="btn-shop">Check Price</a>
+        <article class="blog-card" onclick="openModal('post1')">
+            <img src="https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1000" class="blog-img">
+            <div class="blog-content">
+                <div class="blog-date">Oct 26, 2025</div>
+                <h3 class="blog-title">5 Ways to Experience Seoul from Home</h3>
+                <p class="blog-excerpt">You don't need a plane ticket to feel the heartbeat of Korea. Here is how I am immersing myself in Seoul culture while saving...</p>
+                <span class="read-more-btn">Read Story</span>
             </div>
+            <div id="post1-content" style="display:none;">
+                <div class="full-title">5 Ways to Experience Seoul from Home</div>
+                <div class="full-date">Oct 26, 2025</div>
+                <div class="full-img">https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1000</div>
+                <div class="full-text">
+You don't need a plane ticket to feel the heartbeat of Korea. Here is how I am immersing myself in Seoul culture while saving for my dream trip.
 
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/61jC203e0XL._SL1000_.jpg" alt="Korean Skincare" class="product-img">
-                <h4 class="product-title">COSRX Snail Mucin</h4>
-                <p class="product-price">From $15.00</p>
-                <a href="#" class="btn-shop">Check Price</a>
-            </div>
+<strong>1. The Virtual Museum Tour</strong>
+Did you know the National Museum of Korea offers VR tours? I spent hours walking through the Joseon Dynasty halls yesterday. It was breathtaking to see the crowns and pottery up close, even through a screen.
 
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/81+m10rK+SL._SL1500_.jpg" alt="Thai Tea" class="product-img">
-                <h4 class="product-title">Authentic Thai Tea Mix</h4>
-                <p class="product-price">From $12.99</p>
-                <a href="#" class="btn-shop">Check Price</a>
-            </div>
+<strong>2. The Kitchen Challenge</strong>
+I finally tried making Kimchi Jjigae. The secret is aged Kimchi! It smells pungent but tastes like heaven.
 
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/81729W-h2sL._SL1500_.jpg" alt="Korea History Book" class="product-img">
-                <h4 class="product-title">The Birth of Korean Cool</h4>
-                <p class="product-price">From $18.00</p>
-                <a href="#" class="btn-shop">Check Price</a>
+<strong>3. K-Drama Language Learning</strong>
+I stopped using subtitles for the simple phrases. Hearing "Annyeonghaseyo" in Crash Landing on You hits different when you are studying.
+
+<strong>4. K-Pop Online Concerts</strong>
+Nothing beats the energy of a live stream at 3 AM with millions of other fans. The chat rooms go wild and you feel connected to the world.
+
+<strong>5. Planning the Itinerary</strong>
+I'm using Naver Maps to pin my future coffee spots in Hongdae.
+                </div>
             </div>
+        </article>
+
         </div>
-    </section>
+</section>
 
-    <section class="history-section">
-        <div class="split-layout">
-            <div class="history-text">
-                <span class="tag">Living Heritage</span>
-                <h2>The Moon Diamond: <br>Thailands Sacred Cat</h2>
-                <p>Before they were global pets, the <strong>Siamese Cat</strong> (or <em>Wichien Maat</em>) was the guardian of Thai temples and the companion of Kings.</p>
-                <p>Legend says that when a Royal died, their soul would pass into a Siamese cat, which would then spend the rest of its life living in luxury in a temple.</p>
-                <br>
-                <a href="#" class="btn-hero" style="background:var(--color-charcoal); color:white; font-size: 0.9rem;">Explore the History</a>
-            </div>
-            
-            <div class="history-images">
-                <img src="https://images.unsplash.com/photo-1513245543132-31f507417b26?q=80&w=800&auto=format&fit=crop" alt="Siamese Cat" class="tall-img">
-                <img src="https://images.unsplash.com/photo-1599525633454-3294c7764724?q=80&w=800&auto=format&fit=crop" alt="Thai Temple Detail">
-                <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?q=80&w=800&auto=format&fit=crop" alt="Bangkok Street">
-            </div>
+<section id="shop" class="shop-section">
+    <h2>Fund the Dream</h2>
+    <p style="color:#666; margin-bottom:20px;">Every purchase helps me save for the ticket.</p>
+    <div class="shop-grid">
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71X8NZeKqXL._AC_SL1500_.jpg" alt="Album">
+            <h4>Enhypen Album</h4>
+            <a href="#" class="btn-shop">View on Amazon</a>
         </div>
-    </section>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/81+m10rK+SL._SL1500_.jpg" alt="Tea">
+            <h4>Thai Tea Mix</h4>
+            <a href="#" class="btn-shop">View on Amazon</a>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61jC203e0XL._SL1000_.jpg" alt="Skin">
+            <h4>Snail Mucin</h4>
+            <a href="#" class="btn-shop">View on Amazon</a>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/81729W-h2sL._SL1500_.jpg" alt="Book">
+            <h4>Korean Cool</h4>
+            <a href="#" class="btn-shop">View on Amazon</a>
+        </div>
+    </div>
+</section>
 
-    <footer>
-        <span class="footer-logo">Within the Heart of Asia</span>
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Instagram</a>
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img src="" id="modal-img" class="modal-header-img">
+        <div class="modal-body">
+            <h2 id="modal-title"></h2>
+            <span id="modal-date" class="meta"></span>
+            <div id="modal-text" class="modal-text"></div>
         </div>
-        <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2025. Designed in the Heart of Asia.</p>
-    </footer>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('modal-overlay');
+    const mImg = document.getElementById('modal-img');
+    const mTitle = document.getElementById('modal-title');
+    const mDate = document.getElementById('modal-date');
+    const mText = document.getElementById('modal-text');
+
+    function openModal(postId) {
+        // Get hidden content
+        const contentDiv = document.getElementById(postId + '-content');
+        if(!contentDiv) return;
+
+        mTitle.innerText = contentDiv.querySelector('.full-title').innerText;
+        mDate.innerText = contentDiv.querySelector('.full-date').innerText;
+        mImg.src = contentDiv.querySelector('.full-img').innerText;
+        mText.innerHTML = contentDiv.querySelector('.full-text').innerHTML; // Use HTML to keep bolding
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Stop scrolling background
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close if clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+</script>
 
 </body>
 </html>
